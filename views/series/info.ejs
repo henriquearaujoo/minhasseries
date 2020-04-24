@@ -1,0 +1,45 @@
+<%-include('../partials/header')%>
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2>Series</h2>
+                    <p class="lead">Informações da série
+                        <a href="/series" class="btn">Voltar</a>
+                    </p>
+                    <form method="POST">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <div class="input-group">
+                                <input type="name" readonly class="form-control <%if (erro && erro.indexOf('name') >= 0) {%> is-invalid <%}%>" id="name" name="name" placeholder="Nome da série" value="<%= serie.name%>">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select class="form-control" id="status" name="status" disabled>
+                                <option value="to-watch"  <% if (serie.status == 'to-watch') { %> selected <%} else { '' } %> >Para assistir</option>
+                                <option value="watching" <% if (serie.status == 'watching') { %> selected <%} else { '' } %> >Assistindo</option>
+                                <option value="watched" <% if (serie.status == 'watched') { %> selected <%} else { '' } %>  >Assistido</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="comentario" id="comentario" cols="50" rows="5" placeholder="Adicione seu comentário aqui"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Adicionar comentário</button>
+                        <div class="card" style="margin-top: 20px;">
+                            <table class="table">
+                                <% serie.coments.forEach( coment => {%>
+                                    <tr>
+                                        <td>
+                                            <%= coment%>
+                                        </td>
+                                    </tr>
+                                    <%})%>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%-include('../partials/footer')%>

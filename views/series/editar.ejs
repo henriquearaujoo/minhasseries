@@ -1,0 +1,34 @@
+<%-include('../partials/header')%>
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2>Series</h2>
+                    <p class="lead">Editar série
+                        <a href="/series" class="btn">Voltar</a>
+                    </p>
+                    <form method="POST">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <div class="input-group">
+                                <input type="name" class="form-control <%if (erro && erro.indexOf('name') >= 0) {%> is-invalid <%}%>" id="name" name="name" placeholder="Nome da série" value="<%= serie.name%>">
+                                <div class="invalid-tooltip">
+                                    Informe o nome da série
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select class="form-control" id="status" name="status">
+                                <option value="to-watch"  <% if (serie.status == 'to-watch') { %> selected <%} else { '' } %> >Para assistir</option>
+                                <option value="watching" <% if (serie.status == 'watching') { %> selected <%} else { '' } %> >Assistindo</option>
+                                <option value="watched" <% if (serie.status == 'watched') { %> selected <%} else { '' } %>  >Assistido</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%-include('../partials/footer')%>

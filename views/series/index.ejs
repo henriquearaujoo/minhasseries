@@ -1,0 +1,41 @@
+<%-include('../partials/header')%>
+    <section id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2>Series</h2>
+                    <p class="lead">Todas as séries
+                        <a href="series/nova" class="btn btn-info">Nova série</a>
+                    </p>
+                    <table class="table table-hover">
+                        <% series.forEach( serie => {%>
+                            <tr>
+                                <td class="wd-100">
+                                    <div>
+                                        <a href="/series/info/<%=serie._id%>">
+                                            <%= serie.name %>
+                                        </a>
+                                        <div>
+                                            <span class="badge badge-secondary">
+                                                <% if (serie.status == 'to-watch') { %> Para assistir
+                                                    <%} else { '' } %>
+                                                        <% if (serie.status == 'watching') { %> Assistindo
+                                                            <%} else { '' } %>
+                                                                <% if (serie.status == 'watched') { %> Assistido
+                                                                    <%} else { '' } %>
+                                                </span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="wd-25">
+                                    <a href="series/editar/<%=serie._id%>" class="btn btn-info">Editar</a>
+                                    <a href="series/excluir/<%=serie._id%>" class="btn btn-light" onclick="return alert('Deseja realmente excluir a série?')">Excluir</a>
+                                </td>
+                            </tr>
+                            <%})%>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%-include('../partials/footer')%>
